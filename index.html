@@ -1,0 +1,379 @@
+```html
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advocate Sudip Maiti - Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'law-blue': '#0f172a', // slate-900
+                        'law-gold': '#d4af37', // metallic gold
+                        'law-gold-hover': '#b5952f',
+                    },
+                    fontFamily: {
+                        'bengali': ['"Hind Siliguri"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        .hero-pattern {
+            background-color: #0f172a;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1589578527966-fdac0f44566c?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #d4af37;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+        .section-title.left::after {
+            margin: 10px 0 0;
+        }
+
+        /* Neon Button Styling */
+        .neon-toggle {
+            background-color: rgba(0, 243, 255, 0.05);
+            color: #00f3ff;
+            border: 2px solid #00f3ff;
+            border-radius: 50px;
+            padding: 10px 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            box-shadow: 0 0 12px #00f3ff, inset 0 0 10px #00f3ff;
+            text-shadow: 0 0 8px #00f3ff;
+            transition: all 0.3s ease;
+            animation: pulse-neon 2s infinite;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .neon-toggle:hover {
+            background-color: #00f3ff;
+            color: #0f172a;
+            box-shadow: 0 0 25px #00f3ff, 0 0 50px #00f3ff, inset 0 0 15px #00f3ff;
+            text-shadow: none;
+            transform: scale(1.05);
+        }
+        @keyframes pulse-neon {
+            0% { box-shadow: 0 0 12px #00f3ff, inset 0 0 10px #00f3ff; }
+            50% { box-shadow: 0 0 25px #00f3ff, inset 0 0 15px #00f3ff; }
+            100% { box-shadow: 0 0 12px #00f3ff, inset 0 0 10px #00f3ff; }
+        }
+
+        /* Language Toggle Logic */
+        .lang-bn .en { display: none !important; }
+        .lang-en .bn { display: none !important; }
+
+        /* Chatbot Styles */
+        .chat-bubble {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .bot-msg {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-bottom-left-radius: 2px;
+            border: 1px solid #e2e8f0;
+        }
+        .user-msg {
+            background-color: #0f172a;
+            color: #ffffff;
+            border-bottom-right-radius: 2px;
+            margin-left: auto;
+        }
+        .typing-indicator span {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #94a3b8;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        @keyframes float-tooltip {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float-tooltip 2.5s ease-in-out infinite;
+        }
+
+        /* Neon Chat Button Styles */
+        .neon-chat-btn {
+            background-color: #0f172a;
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 15px #ffd700, inset 0 0 10px #ffd700;
+            animation: pulse-chat-neon 2s infinite;
+        }
+        .neon-chat-btn:hover {
+            box-shadow: 0 0 25px #ffd700, 0 0 40px #ffd700, inset 0 0 15px #ffd700;
+            background-color: #ffd700;
+        }
+        .neon-chat-btn:hover i {
+            color: #0f172a !important;
+        }
+        @keyframes pulse-chat-neon {
+            0% { box-shadow: 0 0 15px #ffd700, inset 0 0 10px #ffd700; }
+            50% { box-shadow: 0 0 30px #ffd700, inset 0 0 15px #ffd700; }
+        }
+        /* Reveal Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-active {
+            opacity: 1;
+            transform: translate(0);
+        }
+    </style>
+</head>
+<!-- Default Language Class is 'lang-bn' -->
+<body class="bg-gray-50 text-gray-800 font-bengali antialiased lang-bn" style="padding-bottom: 70px;">
+
+    <!-- Welcome Modal (Free Consultation) -->
+    <div id="welcome-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden bg-black/80 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <div class="bg-law-blue border-[4px] border-law-gold rounded-xl p-8 max-w-md w-[90%] text-center shadow-[0_0_50px_rgba(212,175,55,0.6)] animate-popup relative">
+            <!-- Close Button (Top Right) -->
+            <button onclick="closeWelcomeModal()" class="absolute top-3 right-4 text-gray-400 hover:text-white transition-colors">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+            
+            <div class="w-16 h-16 bg-law-gold rounded-full flex items-center justify-center mx-auto mb-5 animate-bounce shadow-[0_0_20px_#d4af37]">
+                <i class="fa-solid fa-bolt text-law-blue text-3xl"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-white mb-3 tracking-wide">
+                <span class="bn">স্পেশাল অফার!</span><span class="en">Special Offer!</span>
+            </h2>
+            <div class="bg-law-blue border-2 border-law-gold rounded px-4 py-3 mb-5 inline-block w-full">
+                <p class="font-black text-xl md:text-2xl animate-flash">
+                    <span class="bn">প্রথম কনসালটেন্সি ১০০% ফ্রি!</span><span class="en">First Consultancy is 100% Free!</span>
+                </p>
+            </div>
+            <p class="text-gray-200 mb-8 text-base leading-relaxed font-medium">
+                <span class="bn">আপনার আইনি অধিকার রক্ষায় আমরা প্রস্তুত। কোনো রকম দ্বিধা না করে <span class="text-law-gold font-bold text-lg border-b border-law-gold">অতিসত্বর যোগাযোগ করুন!</span></span>
+                <span class="en">We are ready to defend your legal rights. Without any hesitation, <span class="text-law-gold font-bold text-lg border-b border-law-gold">Contact Immediately!</span></span>
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="closeModalAndContact()" class="bg-law-gold text-law-blue font-bold py-3 px-8 rounded shadow-[0_0_20px_#d4af37] hover:bg-law-gold-hover hover:scale-110 transition-all text-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-phone-volume animate-pulse"></i>
+                    <span class="bn">যোগাযোগ করুন</span><span class="en">Contact Now</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 bg-law-blue text-white shadow-lg transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#home" class="flex items-center gap-2 group">
+                        <i class="fa-solid fa-scale-balanced text-law-gold text-2xl group-hover:rotate-12 transition-transform duration-300"></i>
+                        <span class="font-bold text-xl tracking-wider uppercase">Advocate <span class="text-law-gold">Sudip Maiti</span></span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="hover:text-law-gold transition-colors font-medium">
+                        <span class="bn">হোম</span><span class="en">Home</span>
+                    </a>
+                    <a href="#about" class="hover:text-law-gold transition-colors font-medium">
+                        <span class="bn">আমার সম্পর্কে</span><span class="en">About Me</span>
+                    </a>
+                    <a href="#services" class="hover:text-law-gold transition-colors font-medium">
+                        <span class="bn">আইনি সেবাসমূহ</span><span class="en">Services</span>
+                    </a>
+                    <a href="#clients" class="hover:text-law-gold transition-colors font-medium">
+                        <span class="bn">ক্লায়েন্ট</span><span class="en">Clients</span>
+                    </a>
+                    <a href="#contact" class="px-5 py-2 bg-law-gold text-white font-medium rounded hover:bg-law-gold-hover transition-colors shadow-md">
+                        <span class="bn">যোগাযোগ</span><span class="en">Contact</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center gap-4">
+                    <button id="mobile-menu-btn" class="text-white hover:text-law-gold focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-law-blue border-t border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="mobile-link block px-3 py-2 text-white hover:text-law-gold font-medium">
+                    <span class="bn">হোম</span><span class="en">Home</span>
+                </a>
+                <a href="#about" class="mobile-link block px-3 py-2 text-white hover:text-law-gold font-medium">
+                    <span class="bn">আমার সম্পর্কে</span><span class="en">About Me</span>
+                </a>
+                <a href="#services" class="mobile-link block px-3 py-2 text-white hover:text-law-gold font-medium">
+                    <span class="bn">আইনি সেবাসমূহ</span><span class="en">Services</span>
+                </a>
+                <a href="#clients" class="mobile-link block px-3 py-2 text-white hover:text-law-gold font-medium">
+                    <span class="bn">ক্লায়েন্ট</span><span class="en">Clients</span>
+                </a>
+                <a href="#contact" class="mobile-link block px-3 py-2 text-law-gold font-bold">
+                    <span class="bn">যোগাযোগ</span><span class="en">Contact</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-pattern min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 text-white space-y-6 reveal-up">
+                
+                <!-- Neon Language Toggle Button -->
+                <div class="w-full flex justify-center md:justify-start mb-2">
+                    <button onclick="toggleLanguage()" class="neon-toggle">
+                        <i class="fa-solid fa-language text-2xl"></i>
+                        <span class="bn">Read in English</span>
+                        <span class="en">বাংলায় পড়ুন</span>
+                    </button>
+                </div>
+
+                <h2 class="text-law-gold font-semibold tracking-widest text-lg md:text-xl uppercase">
+                    <span class="bn">ক্যালকাটা হাইকোর্ট, তমলুক ডিস্ট্রিক্ট কোর্ট ও হলদিয়া সাবডিভিশনাল কোর্ট</span>
+                    <span class="en">Calcutta High Court, Tamluk District Court & Haldia Sub-Divisional Court</span>
+                </h2>
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+                    <span class="bn">ন্যায়বিচার প্রতিষ্ঠা করাই <br> <span class="text-law-gold">আমার মূল লক্ষ্য</span></span>
+                    <span class="en">Establishing justice is <br> <span class="text-law-gold">my main goal</span></span>
+                </h1>
+                <p class="text-gray-300 text-lg max-w-xl mx-auto md:mx-0">
+                    <span class="bn">বিগত ৫ বছর ধরে সততা ও নিষ্ঠার সাথে আইনি পরামর্শ ও আইনি সহায়তা প্রদান করে আসছি। আপনার যেকোনো আইনি সমস্যার সঠিক সমাধানের জন্য আমি প্রতিশ্রুতিবদ্ধ।</span>
+                    <span class="en">Providing legal advice and assistance with honesty and dedication for over 5 years. Committed to finding the right solution for any of your legal issues.</span>
+                </p>
+                <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#contact" class="px-8 py-3 bg-law-gold text-white font-bold rounded shadow-lg hover:bg-law-gold-hover hover:-translate-y-1 transition-all duration-300">
+                        <span class="bn">পরামর্শ নিন</span><span class="en">Consult Now</span>
+                    </a>
+                    <a href="#services" class="px-8 py-3 bg-transparent border-2 border-white text-white font-bold rounded hover:bg-white hover:text-law-blue transition-all duration-300">
+                        <span class="bn">সেবাসমূহ দেখুন</span><span class="en">View Services</span>
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-12 md:mt-0 hidden md:flex justify-end reveal-left">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-law-gold rounded-lg transform translate-x-4 translate-y-4 -z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=800&auto=format&fit=crop" alt="Advocate Portrait" class="rounded-lg shadow-xl w-80 h-auto object-cover border-4 border-law-blue">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-5/12 reveal-left">
+                    <img src="https://images.unsplash.com/photo-1589391886645-d51941baf7fb?q=80&w=800&auto=format&fit=crop" alt="Law Books" class="rounded-lg shadow-lg w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                </div>
+                <div class="md:w-7/12 space-y-6 reveal-right">
+                    <h2 class="text-3xl md:text-4xl font-bold text-law-blue section-title left">
+                        <span class="bn">আমার সম্পর্কে</span><span class="en">About Me</span>
+                    </h2>
+                    <h3 class="text-xl font-semibold text-gray-700">Advocate Sudip Maiti 
+                        <span class="text-sm font-normal text-law-gold ml-2">
+                            <span class="bn">(এলএলবি)</span><span class="en">(LLB)</span>
+                        </span>
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        <span class="bn">আমি একজন অভিজ্ঞ আইনজীবী, যিনি দেওয়ানি, ফৌজদারি এবং কর্পোরেট আইনে বিশেষ দক্ষতা রাখি। আইনশাস্ত্রে স্নাতক ও স্নাতকোত্তর সম্পন্ন করার পর থেকে, আমি নিয়মিত ক্যালকাটা হাইকোর্ট, তমলুক ডিস্ট্রিক্ট কোর্ট এবং হলদিয়া সাবডিভিশনাল কোর্টে অত্যন্ত নিষ্ঠার সাথে আইন পেশায় নিয়োজিত আছি।</span>
+                        <span class="en">I am an experienced advocate specializing in civil, criminal, and corporate law. After completing my graduation and post-graduation in law, I have been practicing with deep dedication at Calcutta High Court, Tamluk District Court, and Haldia Sub-Divisional Court.</span>
+                    </p>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        <span class="bn">আমার কাজের মূল ভিত্তি হলো সততা, স্বচ্ছতা এবং মক্কেলের প্রতি শতভাগ মনোযোগ। আইনি প্রক্রিয়ার জটিলতা দূর করে মক্কেলদের সঠিক পথে পরিচালিত করাই আমার একমাত্র ব্রত।</span>
+                        <span class="en">The core of my practice is honesty, transparency, and 100% commitment to my clients. My ultimate goal is to guide clients on the right path by simplifying complex legal procedures.</span>
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 pt-6 border-t border-gray-200 mt-6">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-scale-unbalanced text-law-gold text-2xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-law-blue text-xl flex items-center gap-1">
+                                    <span class="counter" data-target="5">0</span>
+                                    <span class="bn">+ বছর</span><span class="en">+ Years</span>
+                                </h4>
+                                <p class="text-gray-500">
+                                    <span class="bn">অভিজ্ঞতা</span><span class="en">Experience</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-gavel text-law-gold text-2xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-law-blue text-xl flex items-center gap-1">
+                                    <span class="counter" data-target="500">0</span>
+                                    <span class="bn">+</span><span class="en">+</span>
+                                </h4>
+                                <p class="text-gray-500">
+                                    <span class="bn">সফল মামলা</span><span class="en">Successful Cases</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="service"&gt;
